@@ -9,21 +9,39 @@ export const App: React.FC = () => {
   const [goods, setGoods] = useState<Good[]>([]);
 
   const handleLoadAll = () => {
-    getAll().then(data => {
-      setGoods(data);
-    });
+    getAll()
+      .then(data => {
+        setGoods(data);
+      })
+      .catch(error => {
+        // eslint-disable-next-line no-console
+        console.error('Error loading all goods', error);
+        alert('Failed to load goods. Please try again later.');
+      });
   };
 
   const handleLoadFive = () => {
-    get5First().then(data => {
-      setGoods(data);
-    });
+    get5First()
+      .then(data => {
+        setGoods(data);
+      })
+      .catch(error => {
+        // eslint-disable-next-line no-console
+        console.error('Error loading 5 goods', error);
+        alert('Failed to load first 5 goods.');
+      });
   };
 
   const handleLoadRed = () => {
-    getRedGoods().then(data => {
-      setGoods(data);
-    });
+    getRedGoods()
+      .then(data => {
+        setGoods(data);
+      })
+      .catch(error => {
+        // eslint-disable-next-line no-console
+        console.error('Error loading red goods:', error);
+        alert('Failed to load red goods.');
+      });
   };
 
   return (
@@ -49,4 +67,4 @@ export const App: React.FC = () => {
       <GoodsList goods={goods} />
     </div>
   );
-}
+};
